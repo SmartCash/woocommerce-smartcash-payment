@@ -21,10 +21,13 @@
       <div class="row align-items-center">
         <div class="col-md-4 text-center">
           <div id="qrcode" class="mb-4 mb-md-2 px-5 px-md-3">
-
+            <?php
+              $qr_code_address = "smartcash:".get_post_meta($order->id, "kamoney_address", true)."?label=".urlencode(get_bloginfo("name"))."&amount=".floatval(get_post_meta($order->id, "kamoney_amount", true))."&message=Order".$order->id;
+              echo "<!-- ".$qr_code_address." -->";
+            ?>
           </div>
           <script type="text/javascript">
-            new QRCode(document.getElementById("qrcode"), { text: "<?php echo get_post_meta($order->id, "kamoney_address", true); ?>", width: 151, height: 151} );
+            new QRCode(document.getElementById("qrcode"), { text: "<?php echo $qr_code_address; ?>", width: 151, height: 151} );
           </script>
         </div>
         <div class="col-md-8" style="border-left: 1px solid #EEE;">

@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
     $kamoney = new Kamoney($this->kamoney_public_key, $this->kamoney_secret_key);
     $test = $kamoney->statusServiceOrder();
-		if ( array_key_exists("error", $test) && false === $test ) {
+		if ( array_key_exists("error", $test) || false === $test ) {
 			include dirname( __FILE__ ) . '/html-notice-key-missing.php';
 		}
 	}

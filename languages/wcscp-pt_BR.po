@@ -1,0 +1,214 @@
+# Copyright (C) 2019 WooCommerce_SmartCash
+# This file is distributed under the same license as the WooCommerce_SmartCash package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce_SmartCash\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: includes/class-wc-smartcash-gateway.php:18, includes/class-wc-smartcash-gateway.php:20
+msgid "SmartCash"
+msgstr ""
+
+#: includes/class-wc-smartcash-gateway.php:19
+msgid "Start accepting SmartCash cryptocurrency in your WooCommerce store.<br /><b>This plugin requires a merchant account in the service <a href='http://kamoney.com.br' target='_blank'>Kamoney</a>.</b>"
+msgstr "Comece aceitar a criptomoeda SmartCash na sua loja WooCommerce.<br /><b>Esse plugin requer uma conta de lojista no serviço <a href='http://kamoney.com.br' target='_blank'>Kamoney</a>.</b>"
+
+#: includes/class-wc-smartcash-gateway.php:58
+msgid "Enable / Disable"
+msgstr "Habilitar / Desabilitar"
+
+#: includes/class-wc-smartcash-gateway.php:59
+msgid "Enable this payment gateway"
+msgstr "Habilitar essa forma de pagamento"
+
+#: includes/class-wc-smartcash-gateway.php:64
+msgid "Title"
+msgstr "Título"
+
+#: includes/class-wc-smartcash-gateway.php:66, includes/class-wc-smartcash-gateway.php:72
+msgid "Payment title of checkout process."
+msgstr "Título do método de pagamento no checkout"
+
+#: includes/class-wc-smartcash-gateway.php:67, templates/payment-page.php:29
+msgid "Pay with SmartCash"
+msgstr "Pagar com SmartCash"
+
+#: includes/class-wc-smartcash-gateway.php:70
+msgid "Description"
+msgstr "Descrição"
+
+#: includes/class-wc-smartcash-gateway.php:73
+msgid "Pay with SmartCash cryptocurrency"
+msgstr "Pagar com a criptomoeda SmartCash"
+
+#: includes/class-wc-smartcash-gateway.php:77
+msgid "Kamoney Public Key"
+msgstr ""
+
+#: includes/class-wc-smartcash-gateway.php:79
+msgid "This is the Public Key provided by Kamoney.com.br when you signed up for a merchant account."
+msgstr "Essa é a sua Public Key no serviço Kamoney.com.br. Disponível ao se inscrever para uma conta de lojista."
+
+#: includes/class-wc-smartcash-gateway.php:82
+msgid "Kamoney Secret Key"
+msgstr ""
+
+#: includes/class-wc-smartcash-gateway.php:84
+msgid "This is the Secret Key provided by Kamoney.com.br when you signed up for a merchant account."
+msgstr "Essa é a sua Secret Key no serviço Kamoney.com.br. Disponível ao se inscrever para uma conta de lojista."
+
+#: includes/class-wc-smartcash-gateway.php:87
+msgid "Debug mode"
+msgstr ""
+
+#: includes/class-wc-smartcash-gateway.php:88
+msgid "Enable logging"
+msgstr "Habilitar log"
+
+#: includes/class-wc-smartcash-gateway.php:160
+msgid "Kamoney Sale ID: "
+msgstr "ID da Venda no Kamoney"
+
+#: includes/class-wc-smartcash-gateway.php:175
+msgid "Failed to connect to Kamoney: "
+msgstr "Falha ao se conectar a Kamoney: "
+
+#: includes/class-wc-smartcash-gateway.php:178
+msgid "Payment error: service not available. Please, try again later."
+msgstr "Erro no pagamento: o serviço não está diponsível. Tente novamente mais tarde."
+
+#: includes/class-wc-smartcash-gateway.php:219
+msgid "Transaction identified. Confirming."
+msgstr "Transação identificada. Confirmando."
+
+#: includes/class-wc-smartcash-gateway.php:222
+msgid "Approved. Confirming payment."
+msgstr "Aprovado. Confirmando pagamento."
+
+#: includes/class-wc-smartcash-gateway.php:237
+msgid "Fully confirmed."
+msgstr "Totalmente confirmado."
+
+#: includes/class-wc-smartcash-gateway.php:245
+msgid "Invalid Kamoney Order ID"
+msgstr "ID do Kamoney inválido"
+
+#: includes/class-wc-smartcash-gateway.php:251
+msgid "Invalid Kamoney POST"
+msgstr "POST do Kamoney inválido"
+
+#: includes/class-wc-smartcash.php:74
+msgid "Settings"
+msgstr "Configurações"
+
+#: templates/payment-page-complete.php:14
+msgid "Thank you for your payment!"
+msgstr "Obrigado pelo seu pagamento!"
+
+#: templates/payment-page-complete.php:16
+msgid "Your payment is now complete."
+msgstr "Seu pagamento está completo."
+
+#: templates/payment-page-complete.php:17
+msgid "We are redirecting you to your purchase receipt."
+msgstr "Vamos redirecioná-lo aos detalhes da sua compra."
+
+#: templates/payment-page-complete.php:18
+msgid "Check my receipt"
+msgstr "Ver compra"
+
+#: templates/payment-page-details.php:34
+msgid "Payment details for <b>%s</b>"
+msgstr "Pagamento para <b>%s</b>"
+
+#: templates/payment-page-details.php:35
+msgid "We are waiting for your transaction."
+msgstr "Estamos esperando sua transação"
+
+#: templates/payment-page-details.php:37
+msgid "AMOUNT"
+msgstr "VALOR"
+
+#: templates/payment-page-details.php:41
+msgid "ADDRESS"
+msgstr "ENDEREÇO"
+
+#: templates/payment-page-details.php:42
+msgid "Copy"
+msgstr "Copiar"
+
+#: templates/payment-page-details.php:42
+msgid "Copied"
+msgstr "Copiado"
+
+#: templates/payment-page-details.php:59
+msgid "EXPIRES IN"
+msgstr "EXPIRA EM"
+
+#: templates/payment-page-details.php:78
+msgid "Problems with the payment?"
+msgstr "Problemas com seu pagamento?"
+
+#: templates/payment-page-details.php:78
+msgid "Cancel order &amp; restore cart"
+msgstr "Voltar a loja"
+
+#: templates/payment-page-expired.php:14
+msgid "Sorry, the payment expired"
+msgstr "Desculpe, pagamento expirado"
+
+#: templates/payment-page-expired.php:15
+msgid "If you have already made the payment, your order will be confirmed soon."
+msgstr "Se você já efetuou o pagamento, sua compra será confirmada em breve."
+
+#: templates/payment-page-expired.php:16
+msgid "If not, please, go back to store and repeat your order."
+msgstr "Se não, por favor, volte para a loja e faça sua compra novamente."
+
+#: templates/payment-page-expired.php:17, templates/payment-page-failed.php:17
+msgid "Back to store"
+msgstr "Voltar a loja"
+
+#: templates/payment-page-failed.php:14
+msgid "Ops, there is an error here"
+msgstr "Ops, erro aqui"
+
+#: templates/payment-page-failed.php:15
+msgid "The order that you are looking to pay doesn't exist."
+msgstr "A compra pela qual está tentando pagar não existe."
+
+#: templates/payment-page-failed.php:16
+msgid "If you think that it is an error, please contact support."
+msgstr "Se você acha que isso é um erro, por favor contete o suporte."
+
+#: templates/payment-page.php:33
+msgid "Pay with <b>SmartCash</b>"
+msgstr "Pague com <b>SmartCash</b>"
+
+#: templates/payment-page.php:47
+msgid "Payment expired."
+msgstr "Pagamento expirado."
+
+#: includes/admin/views/html-notice-currency-not-supported.php:13
+msgid "Smartcash Payments Disabled"
+msgstr "Pagamento por SmartCash desabilitado."
+
+#: includes/admin/views/html-notice-currency-not-supported.php:13
+msgid "Currency <code>%s</code> is not supported. Works only with Brazilian Real."
+msgstr "A moeda <code>%s</code> não é suportada. Funciona apenas com Real Brasileiro."
+
+#: includes/admin/views/html-notice-key-missing.php:13
+msgid "SmartCash Payments Disabled"
+msgstr "Pagamento por SmartCash desabilitado."
+
+#: includes/admin/views/html-notice-key-missing.php:13
+msgid "You should inform a valid Kamoney Public and Secret Key."
+msgstr "Você deve informar um par válido de Public e Secret Key da Kamoney."

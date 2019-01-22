@@ -1,0 +1,15 @@
+{
+	"name": "woocommerce-smartcash-payment",
+	"description": "SmartCash cryptocurrency Payment Gateway",
+	"version": "1.0.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/SmartCash/WooCommerce"
+	},
+	"main": "gulpfile.js",
+	"devDependencies": {
+		"gulp": "^4.0.0",
+		"gulp-potomo": "^1.0.2",
+		"gulp-wp-pot": "^2.0.4"
+	}
+}

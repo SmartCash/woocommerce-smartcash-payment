@@ -194,62 +194,97 @@ class WC_SmartCash_Gateway extends WC_Payment_Gateway {
 	 * IPN handler.
 	 */
 	public function ipn_handler() {
-		@ob_clean();
-		if (array_key_exists("order_id", $_POST) && array_key_exists("id", $_POST)) {
-			if ( 'yes' === $this->debug ) {
-				$this->log->add( $this->id, "Callback received: ".print_r($_POST,true));
-			}
-			$data = $_POST;
-			$order = wc_get_order($data["order_id"]);
-			if (false!==$order && get_post_meta($order->id, "kamoney_id", true) == $data["id"]) {
-				header( 'HTTP/1.1 200 OK' );
-				if ( 'yes' === $this->debug ) {
-					$this->log->add( $this->id, "Order $order->id exists and match");
-				}
-				$confirmed_status = array("WAITING_CONFIRMS", "UNCONFIRMED_APPROVED", "CONFIRMED");
-				if (in_array($data["status_code"], $confirmed_status) && $order->get_status() == "on-hold") {
-					if ( 'yes' === $this->debug ) {
-						$this->log->add( $this->id, "Order $order->id has a confirmed status");
-					}
-					wc_reduce_stock_levels( $order_id );
-					$order->update_status( 'processing' );
-				}
-				switch ($data["status_code"]) {
-					case "WAITING_CONFIRMS":
-							$order->add_order_note( __( 'Transaction identified. Confirming.', 'wcscp' ) );
-						break;
-					case "UNCONFIRMED_APPROVED":
-							$order->add_order_note( __( 'Approved. Confirming payment.', 'wcscp' ) );
-						break;
-					case "UNCONFIRMED_PARTIAL":
+		header('HTTP/1.1 200 OK');
 
+        $msg_error = "*error*";
+        $msg_ok = "*ok*";
 
-						break;
-					case "UNCONFIRMED_REOPENED":
+        $headers = getallheaders();
 
+        if (!array_key_exists('Host', $headers) || !array_key_exists('signature', $headers) || !isset($_POST)) {
+            exit($msg_error);
+        }
 
-						break;
-					case "CONFIRMED_PARTIAL":
+        $signature = $headers['signature'];
+        $post_data = http_build_query($_POST, '', '&');
+        $signature_valid = hash_hmac('sha512', $post_data, $this->kamoney_secret_key);
 
+        if ($signature != $signature_valid) {
+            exit($msg_error);
+        }
 
-						break;
-					case "CONFIRMED":
-							$order->add_order_note( __( 'Fully confirmed.', 'wcscp' ) );
-							die("*ok*");
-						break;
-				}
-			} else {
-				if ( 'yes' === $this->debug ) {
-					$this->log->add( $this->id, "Invalid Kamoney Order ID");
-				}
-				wp_die(esc_html__( 'Invalid Kamoney Order ID', 'wcscp' ));
-			}
-		} else {
-			if ( 'yes' === $this->debug ) {
-				$this->log->add( $this->id, "Invalid Kamoney POST");
-			}
-			wp_die(esc_html__( 'Invalid Kamoney POST', 'wcscp' ));
+        if (!array_key_exists("order_id", $_POST) && !array_key_exists("id", $_POST)) {
+            exit($msg_error);
+        }
+
+        if ('yes' === $this->debug) {
+            $this->log->add($this->id, "Callback received: " . print_r($_POST, true));
+        }
+
+        $data = $_POST;
+        $order = wc_get_order($data["order_id"]);
+
+        if ($order == false) {
+            exit($msg_error);
+        }
+		
+		if($order->get_status() == "processing"){
+			exit($msg_ok);
 		}
+
+        if (get_post_meta($order->id, "kamoney_id", true) !== $data["id"]) {
+            if ('yes' === $this->debug) {
+                $this->log->add($this->id, "Invalid Kamoney POST");
+            }
+
+            exit($msg_error);
+        }
+
+        if ('yes' === $this->debug) {
+            $this->log->add($this->id, "Order $order->id exists and match");
+        }
+
+        if ('yes' === $this->debug) {
+            $this->log->add($this->id, "Order $order->id has status " . $data["status_code"]);
+        }
+
+        $confirmed_status = array(
+            "WAITING_CONFIRMS",
+            "UNCONFIRMED_APPROVED",
+            "CONFIRMED",
+        );
+
+        if (in_array($data["status_code"], $confirmed_status) && $order->get_status() == "on-hold") {
+            if ('yes' === $this->debug) {
+                $this->log->add($this->id, "Order $order->id has a confirmed status");
+            }
+
+            wc_reduce_stock_levels($order_id);
+            $order->update_status('processing');
+        }
+
+        switch ($data["status_code"]) {
+            case "WAITING_CONFIRMS":
+                $order->add_order_note(__('Transaction identified. Confirming.', 'wcscp'));
+                break;
+            case "UNCONFIRMED_APPROVED":
+                $order->add_order_note(__('Approved. Confirming payment.', 'wcscp'));
+                break;
+            case "UNCONFIRMED_PARTIAL":
+            case "UNCONFIRMED_REOPENED":
+            case "CONFIRMED_PARTIAL":
+                break;
+            case "CANCELED":
+                $order->add_order_note(__('Cancelled.', 'wcscp'));
+                $order->update_status('cancelled');
+                $order->update_status('trash');
+                break;
+            case "CONFIRMED":
+                $order->add_order_note(__('Fully confirmed.', 'wcscp'));
+                break;
+        }
+
+		exit($msg_ok);
 	}
 
 
